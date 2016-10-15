@@ -1,0 +1,50 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.comments-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.comment {
+    border-left: 1px solid #666;
+    margin-left: 16px;
+    padding: 0 0 20px 26px;
+    position: relative;
+}
+
+.comments-list .comment:last-of-type {
+    border: none;
+}
+
+.comment-avatar {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: #999;
+    left: -16px;
+}
+
+.comment-name {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.comment-time {
+    font-size: 10px;
+    color: #666;
+}
+
+.comment-text {
+    font-size: 16px;
+}
+
+.comment-name,
+.comment-time,
+.comment-text {
+    line-height: 16px;
+}

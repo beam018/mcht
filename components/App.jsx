@@ -12,6 +12,18 @@ const comments = [
         name: chance.name(),
         time: chance.timestamp(),
         text: chance.sentence()
+    },
+    {
+        avatar: chance.avatar(),
+        name: chance.name(),
+        time: chance.timestamp(),
+        text: chance.sentence()
+    },
+    {
+        avatar: chance.avatar(),
+        name: chance.name(),
+        time: chance.timestamp(),
+        text: chance.sentence()
     }
 ]
 

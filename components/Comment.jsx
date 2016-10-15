@@ -8,7 +8,7 @@ class Comment extends Component {
     render() {
         return (
             <li className='comment'>
-                <img src={this.props.avatar} className='comment-avatar' />
+                <img width='32' height='32' src={this.props.avatar} className='comment-avatar' />
                 <div className='comment-name'>{this.props.name}</div>
                 <div className='comment-time'>{this.props.time}</div>
                 <div className='comment-text'>{this.props.text}</div>
