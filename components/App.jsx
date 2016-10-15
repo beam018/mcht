@@ -11,19 +11,89 @@ const comments = [
         avatar: chance.avatar(),
         name: chance.name(),
         time: chance.timestamp(),
-        text: chance.sentence()
+        text: chance.sentence(),
+        replays: [
+                {
+                avatar: chance.avatar(),
+                name: chance.name(),
+                time: chance.timestamp(),
+                text: chance.sentence(),
+                replays: []
+            },
+            {
+                avatar: chance.avatar(),
+                name: chance.name(),
+                time: chance.timestamp(),
+                text: chance.sentence(),
+                replays: []
+            }
+        ]
     },
     {
         avatar: chance.avatar(),
         name: chance.name(),
         time: chance.timestamp(),
-        text: chance.sentence()
+        text: chance.sentence(),
+        replays: []
     },
     {
         avatar: chance.avatar(),
         name: chance.name(),
         time: chance.timestamp(),
-        text: chance.sentence()
+        text: chance.sentence(),
+        replays: [
+            {
+                avatar: chance.avatar(),
+                name: chance.name(),
+                time: chance.timestamp(),
+                text: chance.sentence(),
+                replays: [
+                    {
+                        avatar: chance.avatar(),
+                        name: chance.name(),
+                        time: chance.timestamp(),
+                        text: chance.sentence(),
+                        replays: []
+                    },
+                    {
+                        avatar: chance.avatar(),
+                        name: chance.name(),
+                        time: chance.timestamp(),
+                        text: chance.sentence(),
+                        replays: [
+                            {
+                                avatar: chance.avatar(),
+                                name: chance.name(),
+                                time: chance.timestamp(),
+                                text: chance.sentence(),
+                                replays: []
+                            },
+                            {
+                                avatar: chance.avatar(),
+                                name: chance.name(),
+                                time: chance.timestamp(),
+                                text: chance.sentence(),
+                                replays: []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                avatar: chance.avatar(),
+                name: chance.name(),
+                time: chance.timestamp(),
+                text: chance.sentence(),
+                replays: []
+            },
+            {
+                avatar: chance.avatar(),
+                name: chance.name(),
+                time: chance.timestamp(),
+                text: chance.sentence(),
+                replays: []
+            }
+        ]
     }
 ]
 

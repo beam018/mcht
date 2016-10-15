@@ -11,6 +11,10 @@ class CommentsList extends Component {
     }
 
     render() {
+        const limit = this.props.nestingLimit > 0
+            ? this.props.nestingLimit - 1
+            : 0;
+
         if (!this.props.comments || this.props.comments.length === 0) {
             return (
                 <div>No comments yet.</div>
@@ -20,7 +24,7 @@ class CommentsList extends Component {
         return (
             <ul className='comments-list'>
                 {this.props.comments.map((item, i) => {
-                    return <Comment key={i} {...item} />
+                    return <Comment key={i} {...item} nestingLimit={limit}/>
                 })}
             </ul>
         );

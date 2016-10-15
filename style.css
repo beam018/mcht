@@ -9,15 +9,20 @@ body {
     padding: 0;
 }
 
+.comments-list .comments-list {
+    margin-top: 20px;
+}
+
+.comments-list .comment:last-of-type {
+    border: none;
+    padding-bottom: 0;
+}
+
 .comment {
     border-left: 1px solid #666;
     margin-left: 16px;
     padding: 0 0 20px 26px;
     position: relative;
-}
-
-.comments-list .comment:last-of-type {
-    border: none;
 }
 
 .comment-avatar {
