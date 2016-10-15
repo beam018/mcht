@@ -1,7 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import CommentsList from './CommentsList.jsx';
+
+import Chance from 'chance';
+
+const chance = new Chance();
+const comments = [
+    {
+        avatar: chance.avatar(),
+        name: chance.name(),
+        time: chance.timestamp(),
+        text: chance.sentence()
+    }
+]
+
 ReactDOM.render(
-    <h1>Hello, world!</h1>,
+    <CommentsList comments={comments} />,
     document.getElementById('app')
 );
