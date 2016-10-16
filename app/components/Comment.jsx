@@ -101,7 +101,7 @@ class Comment extends Component {
 
                 <div className='comment-name'>{props.name}</div>
                 <div className='comment-time'>{state.relativeTime}</div>
-                <div className='comment-text'>{props.text}</div>
+                <pre className='comment-text'>{props.text}</pre>
 
                 <div className='comment-controls'>
                     {controls}

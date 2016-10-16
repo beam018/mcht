@@ -11,9 +11,7 @@ class CommentForm extends Component {
         }
     }
 
-    _onSubmit(e) {
-        e.preventDefault();
-
+    submitForm() {
         commentAdd({
             text: this.state.text.trim(),
             parent: this.props.parent
@@ -24,8 +22,20 @@ class CommentForm extends Component {
         this.setState({ text: '' })
     }
 
+    _onSubmit(e) {
+        e.preventDefault();
+
+        this.submitForm();
+    }
+
     _onAreaChange(e) {
         this.setState({ text: e.target.value })
+    }
+
+    _onAreaKeyPress(e) {
+        if (e.key === 'Enter' && e.shiftKey) {
+            this.submitForm();
+        }
     }
 
     render() {
@@ -41,6 +51,7 @@ class CommentForm extends Component {
                         className='comment-area'
                         disabled={this.props.disabled}
                         onChange={this._onAreaChange.bind(this)}
+                        onKeyPress={this._onAreaKeyPress.bind(this)}
                         value={this.state.text}>
                     </textarea>
                 </label>
