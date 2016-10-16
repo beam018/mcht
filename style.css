@@ -54,6 +54,13 @@ body {
     line-height: 16px;
 }
 
+.comment-controls-item {
+    font-size: 10px;
+    margin-right: 10px;
+    text-decoration: none;
+    border-bottom: 1px dashed #00f;
+}
+
 .comment-area-label {
     font-weight: bold;
 }

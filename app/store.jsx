@@ -7,7 +7,7 @@ const _data = [
     {
         avatar: chance.avatar(),
         name: chance.name(),
-        time: chance.timestamp(),
+        time: 1476618917764,
         text: chance.sentence(),
         replays: [
                 {
@@ -22,76 +22,11 @@ const _data = [
                 name: chance.name(),
                 time: chance.timestamp(),
                 text: chance.sentence(),
-                replays: []
+                replays: [],
+                own: true
             }
         ]
-    },
-    // {
-    //     avatar: chance.avatar(),
-    //     name: chance.name(),
-    //     time: chance.timestamp(),
-    //     text: chance.sentence(),
-    //     replays: []
-    // },
-    // {
-    //     avatar: chance.avatar(),
-    //     name: chance.name(),
-    //     time: chance.timestamp(),
-    //     text: chance.sentence(),
-    //     replays: [
-    //         {
-    //             avatar: chance.avatar(),
-    //             name: chance.name(),
-    //             time: chance.timestamp(),
-    //             text: chance.sentence(),
-    //             replays: [
-    //                 {
-    //                     avatar: chance.avatar(),
-    //                     name: chance.name(),
-    //                     time: chance.timestamp(),
-    //                     text: chance.sentence(),
-    //                     replays: []
-    //                 },
-    //                 {
-    //                     avatar: chance.avatar(),
-    //                     name: chance.name(),
-    //                     time: chance.timestamp(),
-    //                     text: chance.sentence(),
-    //                     replays: [
-    //                         {
-    //                             avatar: chance.avatar(),
-    //                             name: chance.name(),
-    //                             time: chance.timestamp(),
-    //                             text: chance.sentence(),
-    //                             replays: []
-    //                         },
-    //                         {
-    //                             avatar: chance.avatar(),
-    //                             name: chance.name(),
-    //                             time: chance.timestamp(),
-    //                             text: chance.sentence(),
-    //                             replays: []
-    //                         }
-    //                     ]
-    //                 }
-    //             ]
-    //         },
-    //         {
-    //             avatar: chance.avatar(),
-    //             name: chance.name(),
-    //             time: chance.timestamp(),
-    //             text: chance.sentence(),
-    //             replays: []
-    //         },
-    //         {
-    //             avatar: chance.avatar(),
-    //             name: chance.name(),
-    //             time: chance.timestamp(),
-    //             text: chance.sentence(),
-    //             replays: []
-    //         }
-    //     ]
-    // }
+    }
 ];
 
 class Store extends EventEmitter {
