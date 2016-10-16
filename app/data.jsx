@@ -27,7 +27,7 @@ const data = {
             avatar: chance.avatar(),
             name: 'Your name',
             time: 1476626889634,
-            text: chance.sentence(),
+            text: chance.paragraph(),
             own: true,
             replays: [
                 {

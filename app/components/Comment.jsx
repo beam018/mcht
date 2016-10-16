@@ -12,7 +12,8 @@ class Comment extends Component {
         super(props);
 
         this.state = {
-            relativeTime: moment(this.props.time).fromNow()
+            relativeTime: moment(this.props.time).fromNow(),
+            textCollapsed: props.text.length > props.textCutPosition
         };
 
         this._interval = null;
@@ -22,18 +23,14 @@ class Comment extends Component {
         const props = this.props;
 
         this._interval = setInterval(() => {
-            this.setState({
-                relativeTime: moment(this.props.time).fromNow()
-            });
+            const timeText = moment(this.props.time).fromNow();
+
+            if (timeText !== this.state.relativeTime) {
+                this.setState({
+                    relativeTime: timeText
+                });
+            }
         }, 1000);
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        if (nextState.relativeTime === this.state.relativeTime && nextProps === this.props) {
-            return false;
-        }
-
-        return true;
     }
 
     componentWillUnmount() {
@@ -60,6 +57,12 @@ class Comment extends Component {
         e.preventDefault();
 
         commentShowForm(null);
+    }
+
+    _onCutClick(e) {
+        e.preventDefault();
+
+        this.setState({ textCollapsed: false });
     }
 
     render() {
@@ -93,13 +96,21 @@ class Comment extends Component {
             ? <CommentForm parent={props.id}/>
             : null;
 
+        const cut = this.state.textCollapsed
+            ? <a href='#' className='comment-cut' onClick={this._onCutClick.bind(this)}>more</a>
+            : null;
+
+        const text = this.state.textCollapsed
+            ? props.text.slice(0, props.textCutPosition - 3) + '...'
+            : props.text
+
         return (
             <li className='comment'>
                 <img width='32' height='32' src={this.props.avatar} className='comment-avatar' />
 
                 <div className='comment-name'>{props.name}</div>
                 <div className='comment-time'>{state.relativeTime}</div>
-                <pre className='comment-text'>{props.text}</pre>
+                <pre className='comment-text'>{text} {cut}</pre>
 
                 <div className='comment-controls'>
                     {controls}
@@ -120,7 +131,8 @@ Comment.propTypes = {
     time: PropTypes.number,
     text: PropTypes.string,
     replays: PropTypes.array,
-    own: PropTypes.bool
+    own: PropTypes.bool,
+    textCutPosition: PropTypes.number
 };
 
 Comment.defaultProps = {
@@ -130,7 +142,8 @@ Comment.defaultProps = {
     time: 0,
     text: '',
     replays: [],
-    own: false
+    own: false,
+    textCutPosition: 140
 };
 
 export default Comment;

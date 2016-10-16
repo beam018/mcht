@@ -4,6 +4,10 @@ body {
     margin: 0 auto;
 }
 
+a:visited {
+    color: #00f;
+}
+
 .comments-list {
     list-style-type: none;
     padding: 0;
@@ -54,6 +58,11 @@ body {
 .comment-time,
 .comment-text {
     line-height: 16px;
+}
+
+.comment-cut {
+    text-decoration: none;
+    border-bottom: 1px dashed #00f;
 }
 
 .comment .comment-form {
