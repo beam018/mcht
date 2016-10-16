@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "webpack --watch",
+    "postinstall" : "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -13,7 +13,7 @@ class CommentsList extends Component {
 
         if (!this.props.comments || this.props.comments.length === 0) {
             return (
-                <div>No comments yet.</div>
+                <p>No comments yet.</p>
             );
         }
 
