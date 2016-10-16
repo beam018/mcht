@@ -1,6 +1,6 @@
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    width: 50%;
+    width: 70%;
     margin: 0 auto;
 }
 
@@ -83,4 +83,11 @@ body {
 .comment-submit {
     float: right;
     font-size: 16px;
+}
+
+@media (max-width:768px) {
+    body {
+        margin: 0 16px;
+        width: auto;
+    }
 }
