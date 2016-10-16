@@ -1,8 +1,6 @@
 import EventEmitter from 'events';
 import Chance from 'chance';
 
-import Dispatcher from './dispatcher.jsx';
-
 const chance = new Chance();
 
 const _data = [
@@ -100,11 +98,19 @@ class Store extends EventEmitter {
     constructor() {
         super(arguments);
 
-        this.inited = false;
+        this._inited = false;
+    }
+
+    init() {
+        this._inited = true;
+    }
+
+    isInited() {
+        return this._inited;
     }
 
     getData() {
-        if (!this.inited) {
+        if (!this._inited) {
             return [];
         }
 
@@ -112,27 +118,4 @@ class Store extends EventEmitter {
     }
 };
 
-const store = new Store();
-
-Dispatcher.register((action) => {
-    switch(action.type) {
-        case 'GET_DATA':
-            // emulate network
-            setTimeout(() => {
-                if (!store.inited) {
-                    store.emit('init');
-
-                    store.inited = true;
-                }
-
-                store.emit('change');
-            });
-
-            break;
-
-        default:
-            ;
-    }
-});
-
-export default store;
+export default new Store();

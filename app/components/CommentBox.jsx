@@ -5,22 +5,25 @@ import * as actions from '../actions.jsx';
 
 import CommentsList from './CommentsList.jsx';
 
+function getStoreState() {
+    return {
+        comments: store.getData(),
+        inited: store.isInited()
+    };
+};
+
 class CommentBox extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            comments: store.getData()
-        }
+        this.state = getStoreState();
     }
 
     componentWillMount() {
-        store.on('init', this._onInit.bind(this));
         store.on('change', this._onChange.bind(this));
     }
 
     componentWillUnmount() {
-        store.removeListener('init');
         store.removeListener('change');
     }
 
@@ -28,23 +31,21 @@ class CommentBox extends Component {
         actions.getData();
     }
 
-    _onInit() {
-        // remove loading effect
-    }
-
     _onChange() {
-        this.setState({
-            comments: store.getData()
-        });
+        this.setState(getStoreState());
     }
 
     render() {
+        const content = this.state.inited
+            ? <CommentsList comments={this.state.comments} />
+            : <p>Loading comments...</p>
+
         return (
             <div>
-                <CommentsList comments={this.state.comments} />
+                {content}
             </div>
         );
     }
-}
+};
 
 export default CommentBox;
