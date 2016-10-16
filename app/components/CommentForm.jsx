@@ -54,6 +54,10 @@ class CommentForm extends Component {
         if (e.key === 'Enter' && e.shiftKey) {
             this.submitForm();
         }
+
+        if (e.key === 'Enter' && !this.state.text.length) {
+            e.preventDefault();
+        }
     }
 
     render() {
