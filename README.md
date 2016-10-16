@@ -4,5 +4,7 @@
 
 #### run
 
-`python -m SimpleHTTPServer`
-`open http://localhost:8000`
+```
+python -m SimpleHTTPServer
+open http://localhost:8000
+```
