@@ -22,7 +22,7 @@ class CommentBox extends Component {
     }
 
     componentWillUnmount() {
-        store.removeListener('change');
+        store.removeListener('change', this._onChange.bind(this));
     }
 
     componentDidMount() {

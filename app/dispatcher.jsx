@@ -74,6 +74,7 @@ dispatcher.register((action) => {
         case 'COMMENT_REMOVE':
             removeComment(action.payload, store.data.comments);
 
+            store.emit('comment:add');
             store.emit('change');
 
             break;
@@ -81,9 +82,12 @@ dispatcher.register((action) => {
         case 'COMMENT_ADD':
             const { text, parent } = action.payload;
 
-            addComment(store.data.comments, text, parent);
+            emulateNetwork(() => {
+                addComment(store.data.comments, text, parent);
 
-            store.emit('change');
+                store.emit('comment:add');
+                store.emit('change');
+            })
 
             break;
 

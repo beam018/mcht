@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+import store from '../store.jsx';
+
 import { commentAdd, commentShowForm } from '../actions.jsx';
 
 class CommentForm extends Component {
@@ -7,8 +9,17 @@ class CommentForm extends Component {
         super(props);
 
         this.state = {
-            text: props.text || ''
-        }
+            text: props.text || '',
+            disabled: false
+        };
+    }
+
+    componentWillMount() {
+        store.on('comment:add', this._onCommentAdd.bind(this));
+    }
+
+    componentWillUnmount() {
+        store.removeListener('comment:add', this._onCommentAdd.bind(this));
     }
 
     submitForm() {
@@ -17,9 +28,16 @@ class CommentForm extends Component {
             parent: this.props.parent
         });
 
-        commentShowForm(null);
+        this.setState({ disabled: true });
 
-        this.setState({ text: '' })
+        commentShowForm(null);
+    }
+
+    _onCommentAdd() {
+        this.setState({
+            text: '',
+            disabled: false
+        });
     }
 
     _onSubmit(e) {
@@ -29,7 +47,7 @@ class CommentForm extends Component {
     }
 
     _onAreaChange(e) {
-        this.setState({ text: e.target.value })
+        this.setState({ text: e.target.value });
     }
 
     _onAreaKeyPress(e) {
@@ -41,7 +59,9 @@ class CommentForm extends Component {
     render() {
         const labelText = !this.props.parent
             ? 'Leave comment:'
-            : null
+            : null;
+
+        const disableForm = this.props.disabled || this.state.disabled;
 
         return (
             <form className='comment-form' onSubmit={this._onSubmit.bind(this)}>
@@ -49,14 +69,14 @@ class CommentForm extends Component {
                     {labelText}
                     <textarea
                         className='comment-area'
-                        disabled={this.props.disabled}
+                        disabled={disableForm}
                         onChange={this._onAreaChange.bind(this)}
                         onKeyPress={this._onAreaKeyPress.bind(this)}
                         value={this.state.text}>
                     </textarea>
                 </label>
 
-                <button className='comment-submit' disabled={this.props.disabled || !this.state.text.length}>Send</button>
+                <button className='comment-submit' disabled={disableForm || !this.state.text.length}>Send</button>
             </form>
         );
     }
@@ -64,12 +84,14 @@ class CommentForm extends Component {
 
 CommentForm.propTypes = {
     disabled: PropTypes.bool,
-    parent: PropTypes.number
+    parent: PropTypes.number,
+    text: PropTypes.string
 };
 
 CommentForm.defaultProps = {
     disabled: false,
-    parent: null
+    parent: null,
+    text: ''
 };
 
 export default CommentForm;
