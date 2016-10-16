@@ -1,4 +1,6 @@
-const chance = new Chance();
+import Chance from 'chance';
+
+export const chance = new Chance();
 
 export const basic = {
     inited: false,
@@ -7,15 +9,26 @@ export const basic = {
     comments: []
 };
 
+export const comment = {
+    id: chance.integer(),
+    avatar: chance.avatar(),
+    name: 'Your name',
+    time: 0,
+    text: '',
+    own: true,
+    replays: []
+}
+
 const data = {
     ...basic,
     comments: [
         {
             id: chance.integer(),
             avatar: chance.avatar(),
-            name: chance.name(),
+            name: 'Your name',
             time: 1476626889634,
             text: chance.sentence(),
+            own: true,
             replays: [
                 {
                     id: chance.integer(),
@@ -28,7 +41,7 @@ const data = {
                 {
                     id: chance.integer(),
                     avatar: chance.avatar(),
-                    name: chance.name(),
+                    name: 'Your name',
                     time: chance.timestamp(),
                     text: chance.sentence(),
                     replays: [],

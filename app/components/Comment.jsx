@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import moment from 'moment';
 
-import { commentToggleForm } from '../actions.jsx';
+import { commentShowForm, commetRemove } from '../actions.jsx';
 
 import CommentsList from './CommentsList.jsx';
 import CommentForm from './CommentForm.jsx';
@@ -47,15 +47,21 @@ class Comment extends Component {
 
         e.preventDefault();
 
-        commentToggleForm(formOnComment !== id ? id : null);
+        commentShowForm(formOnComment !== id ? id : null);
     }
 
     _onRemoveClick(e) {
         e.preventDefault();
+
+        commentShowForm(null);
+
+        commetRemove(this.props.id);
     }
 
     _onEditClick(e) {
         e.preventDefault();
+
+        commentShowForm(null);
     }
 
     render() {
@@ -68,9 +74,11 @@ class Comment extends Component {
             : null;
 
         const controls = [
-            <a href='#' className='comment-controls-item comment-controls-answer'
-                onClick={this._onAnswerClick.bind(this)}
-                key={0}>Answer</a>,
+            props.nestingLimit !== 0
+                ? <a href='#' className='comment-controls-item comment-controls-answer'
+                    onClick={this._onAnswerClick.bind(this)}
+                    key={0}>Answer</a>
+                : null,
             props.own
                 ? <a href='#' className='comment-controls-item comment-controls-edit'
                     onClick={this._onEditClick.bind(this)}
@@ -83,11 +91,8 @@ class Comment extends Component {
                 : null
         ];
 
-        console.log(props.id)
-        console.log(props.formOnComment)
-
         const commentForm = props.formOnComment === props.id
-            ? <CommentForm />
+            ? <CommentForm parent={props.id}/>
             : null;
 
         return (

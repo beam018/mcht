@@ -56,6 +56,7 @@ body {
 
 .comment .comment-form {
     margin-top: 10px;
+    overflow: hidden;
 }
 
 .comment-controls-item {
@@ -74,6 +75,7 @@ body {
     width: 100%;
     height: 100px;
     margin: 10px 0;
+    box-sizing: border-box;
 }
 
 .comment-submit {

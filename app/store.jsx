@@ -1,5 +1,4 @@
 import EventEmitter from 'events';
-import Chance from 'chance';
 
 import data, { basic } from './data.jsx'
 
