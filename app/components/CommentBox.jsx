@@ -39,11 +39,11 @@ class CommentBox extends Component {
                 comments={this.state.comments}
                 nestingLimit={this.state.nestingLimit}
                 formOnComment={this.state.formOnComment}/>
-            : <p>Loading comments...</p>
+            : <p>Loading comments...</p>;
 
         const commentForm = !this.state.formOnComment
             ? <CommentForm disabled={!this.state.inited}/>
-            : null
+            : null;
 
         return (
             <div>

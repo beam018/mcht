@@ -7,17 +7,13 @@ import { commentShowForm, commetRemove } from '../actions.jsx';
 import CommentsList from './CommentsList.jsx';
 import CommentForm from './CommentForm.jsx';
 
-function getState(props) {
-    return {
-        relativeTime: moment(props.time).fromNow()
-    };
-}
-
 class Comment extends Component {
     constructor(props) {
         super(props);
 
-        this.state = getState(this.props);
+        this.state = {
+            relativeTime: moment(this.props.time).fromNow()
+        };
 
         this._interval = null;
     }
@@ -26,7 +22,9 @@ class Comment extends Component {
         const props = this.props;
 
         this._interval = setInterval(() => {
-            this.setState(getState(props));
+            this.setState({
+                relativeTime: moment(this.props.time).fromNow()
+            });
         }, 1000);
     }
 
@@ -79,11 +77,11 @@ class Comment extends Component {
                     onClick={this._onAnswerClick.bind(this)}
                     key={0}>Answer</a>
                 : null,
-            props.own
-                ? <a href='#' className='comment-controls-item comment-controls-edit'
-                    onClick={this._onEditClick.bind(this)}
-                    key={1}>Edit</a>
-                : null,
+            // props.own
+            //     ? <a href='#' className='comment-controls-item comment-controls-edit'
+            //         onClick={this._onEditClick.bind(this)}
+            //         key={1}>Edit</a>
+            //     : null,
             props.own
                 ? <a href='#' className='comment-controls-item comment-controls-remove'
                     onClick={this._onRemoveClick.bind(this)}

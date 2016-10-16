@@ -10,7 +10,8 @@ class CommentForm extends Component {
 
         this.state = {
             text: props.text || '',
-            disabled: false
+            disabled: false,
+            beforeLimit: props.textLimit
         };
     }
 
@@ -47,7 +48,16 @@ class CommentForm extends Component {
     }
 
     _onAreaChange(e) {
-        this.setState({ text: e.target.value });
+        const beforeLimit = this.props.textLimit - e.target.value.length;
+
+        if (beforeLimit < 0) {
+            return;
+        }
+
+        this.setState({
+            text: e.target.value,
+            beforeLimit
+        });
     }
 
     _onAreaKeyPress(e) {
@@ -80,6 +90,7 @@ class CommentForm extends Component {
                     </textarea>
                 </label>
 
+                <span className='comment-counter'>{this.state.beforeLimit}</span>
                 <button className='comment-submit' disabled={disableForm || !this.state.text.length}>Send</button>
             </form>
         );
@@ -89,13 +100,15 @@ class CommentForm extends Component {
 CommentForm.propTypes = {
     disabled: PropTypes.bool,
     parent: PropTypes.number,
-    text: PropTypes.string
+    text: PropTypes.string,
+    textLimit: PropTypes.number
 };
 
 CommentForm.defaultProps = {
     disabled: false,
     parent: null,
-    text: ''
+    text: '',
+    textLimit: 300
 };
 
 export default CommentForm;

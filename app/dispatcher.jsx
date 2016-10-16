@@ -57,6 +57,8 @@ dispatcher.register((action) => {
             emulateNetwork(() => {
                 if (!store.isInited()) {
                     store.data.inited = true;
+
+                    store.emit('init');
                 }
 
                 store.emit('change');
