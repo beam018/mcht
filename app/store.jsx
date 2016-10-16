@@ -1,12 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-import CommentsList from './CommentsList.jsx';
-
+import EventEmitter from 'events';
 import Chance from 'chance';
 
+import Dispatcher from './dispatcher.jsx';
+
 const chance = new Chance();
-const comments = [
+
+const _data = [
     {
         avatar: chance.avatar(),
         name: chance.name(),
@@ -95,9 +94,45 @@ const comments = [
             }
         ]
     }
-]
+];
 
-ReactDOM.render(
-    <CommentsList comments={comments} />,
-    document.getElementById('app')
-);
+class Store extends EventEmitter {
+    constructor() {
+        super(arguments);
+
+        this.inited = false;
+    }
+
+    getData() {
+        if (!this.inited) {
+            return [];
+        }
+
+        return _data;
+    }
+};
+
+const store = new Store();
+
+Dispatcher.register((action) => {
+    switch(action.type) {
+        case 'GET_DATA':
+            // emulate network
+            setTimeout(() => {
+                if (!store.inited) {
+                    store.emit('init');
+
+                    store.inited = true;
+                }
+
+                store.emit('change');
+            });
+
+            break;
+
+        default:
+            ;
+    }
+});
+
+export default store;

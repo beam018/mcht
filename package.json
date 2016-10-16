@@ -24,7 +24,9 @@
     "webpack": "^1.13.2"
   },
   "dependencies": {
+    "flux": "^3.0.0",
     "react": "^15.4.0-rc.4",
-    "react-dom": "^15.4.0-rc.4"
+    "react-dom": "^15.4.0-rc.4",
+    "react-flux": "^1.0.1"
   }
 }

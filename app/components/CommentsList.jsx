@@ -6,10 +6,6 @@ class CommentsList extends Component {
         super(props);
     }
 
-    componentDidMount() {
-        // react to recived data
-    }
-
     render() {
         const limit = this.props.nestingLimit > 0
             ? this.props.nestingLimit - 1
