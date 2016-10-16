@@ -4,6 +4,7 @@ import store from '../store.jsx';
 import * as actions from '../actions.jsx';
 
 import CommentsList from './CommentsList.jsx';
+import CommentForm from './CommentForm.jsx';
 
 function getStoreState() {
     return {
@@ -43,6 +44,8 @@ class CommentBox extends Component {
         return (
             <div>
                 {content}
+
+                <CommentForm disabled={!this.state.inited}/>
             </div>
         );
     }

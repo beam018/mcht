@@ -26,72 +26,72 @@ const _data = [
             }
         ]
     },
-    {
-        avatar: chance.avatar(),
-        name: chance.name(),
-        time: chance.timestamp(),
-        text: chance.sentence(),
-        replays: []
-    },
-    {
-        avatar: chance.avatar(),
-        name: chance.name(),
-        time: chance.timestamp(),
-        text: chance.sentence(),
-        replays: [
-            {
-                avatar: chance.avatar(),
-                name: chance.name(),
-                time: chance.timestamp(),
-                text: chance.sentence(),
-                replays: [
-                    {
-                        avatar: chance.avatar(),
-                        name: chance.name(),
-                        time: chance.timestamp(),
-                        text: chance.sentence(),
-                        replays: []
-                    },
-                    {
-                        avatar: chance.avatar(),
-                        name: chance.name(),
-                        time: chance.timestamp(),
-                        text: chance.sentence(),
-                        replays: [
-                            {
-                                avatar: chance.avatar(),
-                                name: chance.name(),
-                                time: chance.timestamp(),
-                                text: chance.sentence(),
-                                replays: []
-                            },
-                            {
-                                avatar: chance.avatar(),
-                                name: chance.name(),
-                                time: chance.timestamp(),
-                                text: chance.sentence(),
-                                replays: []
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                avatar: chance.avatar(),
-                name: chance.name(),
-                time: chance.timestamp(),
-                text: chance.sentence(),
-                replays: []
-            },
-            {
-                avatar: chance.avatar(),
-                name: chance.name(),
-                time: chance.timestamp(),
-                text: chance.sentence(),
-                replays: []
-            }
-        ]
-    }
+    // {
+    //     avatar: chance.avatar(),
+    //     name: chance.name(),
+    //     time: chance.timestamp(),
+    //     text: chance.sentence(),
+    //     replays: []
+    // },
+    // {
+    //     avatar: chance.avatar(),
+    //     name: chance.name(),
+    //     time: chance.timestamp(),
+    //     text: chance.sentence(),
+    //     replays: [
+    //         {
+    //             avatar: chance.avatar(),
+    //             name: chance.name(),
+    //             time: chance.timestamp(),
+    //             text: chance.sentence(),
+    //             replays: [
+    //                 {
+    //                     avatar: chance.avatar(),
+    //                     name: chance.name(),
+    //                     time: chance.timestamp(),
+    //                     text: chance.sentence(),
+    //                     replays: []
+    //                 },
+    //                 {
+    //                     avatar: chance.avatar(),
+    //                     name: chance.name(),
+    //                     time: chance.timestamp(),
+    //                     text: chance.sentence(),
+    //                     replays: [
+    //                         {
+    //                             avatar: chance.avatar(),
+    //                             name: chance.name(),
+    //                             time: chance.timestamp(),
+    //                             text: chance.sentence(),
+    //                             replays: []
+    //                         },
+    //                         {
+    //                             avatar: chance.avatar(),
+    //                             name: chance.name(),
+    //                             time: chance.timestamp(),
+    //                             text: chance.sentence(),
+    //                             replays: []
+    //                         }
+    //                     ]
+    //                 }
+    //             ]
+    //         },
+    //         {
+    //             avatar: chance.avatar(),
+    //             name: chance.name(),
+    //             time: chance.timestamp(),
+    //             text: chance.sentence(),
+    //             replays: []
+    //         },
+    //         {
+    //             avatar: chance.avatar(),
+    //             name: chance.name(),
+    //             time: chance.timestamp(),
+    //             text: chance.sentence(),
+    //             replays: []
+    //         }
+    //     ]
+    // }
 ];
 
 class Store extends EventEmitter {
