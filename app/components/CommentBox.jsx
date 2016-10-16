@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import store from '../store.jsx';
 
-import * as actions from '../actions.jsx';
+import { getData } from '../actions.jsx';
 
 import CommentsList from './CommentsList.jsx';
 import CommentForm from './CommentForm.jsx';
 
 function getStoreState() {
-    return {
-        comments: store.getData(),
-        inited: store.isInited()
-    };
+    return {...store.getData()};
 };
 
 class CommentBox extends Component {
@@ -29,7 +26,7 @@ class CommentBox extends Component {
     }
 
     componentDidMount() {
-        actions.getData();
+        getData();
     }
 
     _onChange() {
@@ -38,14 +35,21 @@ class CommentBox extends Component {
 
     render() {
         const content = this.state.inited
-            ? <CommentsList comments={this.state.comments} />
+            ? <CommentsList
+                comments={this.state.comments}
+                nestingLimit={this.state.nestingLimit}
+                formOnComment={this.state.formOnComment}/>
             : <p>Loading comments...</p>
+
+        const commentForm = !this.state.formOnComment
+            ? <CommentForm disabled={!this.state.inited}/>
+            : null
 
         return (
             <div>
                 {content}
 
-                <CommentForm disabled={!this.state.inited}/>
+                {commentForm}
             </div>
         );
     }

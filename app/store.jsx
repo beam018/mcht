@@ -1,56 +1,26 @@
 import EventEmitter from 'events';
 import Chance from 'chance';
 
-const chance = new Chance();
-
-const _data = [
-    {
-        avatar: chance.avatar(),
-        name: chance.name(),
-        time: 1476618917764,
-        text: chance.sentence(),
-        replays: [
-                {
-                avatar: chance.avatar(),
-                name: chance.name(),
-                time: chance.timestamp(),
-                text: chance.sentence(),
-                replays: []
-            },
-            {
-                avatar: chance.avatar(),
-                name: chance.name(),
-                time: chance.timestamp(),
-                text: chance.sentence(),
-                replays: [],
-                own: true
-            }
-        ]
-    }
-];
+import data, { basic } from './data.jsx'
 
 class Store extends EventEmitter {
-    constructor() {
-        super(arguments);
+    constructor(data) {
+        super();
 
-        this._inited = false;
-    }
-
-    init() {
-        this._inited = true;
+        this.data = data;
     }
 
     isInited() {
-        return this._inited;
+        return this.data.inited;
     }
 
     getData() {
-        if (!this._inited) {
-            return [];
+        if (!this.isInited()) {
+            return basic;
         }
 
-        return _data;
+        return this.data;
     }
 };
 
-export default new Store();
+export default new Store(data);

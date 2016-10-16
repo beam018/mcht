@@ -20,7 +20,7 @@ class CommentsList extends Component {
         return (
             <ul className='comments-list'>
                 {this.props.comments.map((item, i) => {
-                    return <Comment key={i} {...item} nestingLimit={limit}/>
+                    return <Comment key={i} {...item} nestingLimit={limit} formOnComment={this.props.formOnComment}/>
                 })}
             </ul>
         );
@@ -30,12 +30,14 @@ class CommentsList extends Component {
 CommentsList.propTypes = {
     // comments: PropTypes.arrayOf(React.PropTypes.instanceOf(Comment))
     comments: PropTypes.array,
-    nestingLimit: PropTypes.number
+    nestingLimit: PropTypes.number,
+    formOnComment: PropTypes.number
 };
 
 CommentsList.defaultProps = {
     comments: [],
-    nestingLimit: 3
+    nestingLimit: 3,
+    formOnComment: null
 };
 
 export default CommentsList;

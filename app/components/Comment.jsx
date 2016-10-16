@@ -1,7 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import CommentsList from './CommentsList.jsx';
 
 import moment from 'moment';
+
+import { commentToggleForm } from '../actions.jsx';
+
+import CommentsList from './CommentsList.jsx';
+import CommentForm from './CommentForm.jsx';
 
 function getState(props) {
     return {
@@ -26,21 +30,65 @@ class Comment extends Component {
         }, 1000);
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextState.relativeTime === this.state.relativeTime && nextProps === this.props) {
+            return false;
+        }
+
+        return true;
+    }
+
     componentWillUnmount() {
         clearInterval(this._interval);
+    }
+
+    _onAnswerClick(e) {
+        const { formOnComment, id } = this.props;
+
+        e.preventDefault();
+
+        commentToggleForm(formOnComment !== id ? id : null);
+    }
+
+    _onRemoveClick(e) {
+        e.preventDefault();
+    }
+
+    _onEditClick(e) {
+        e.preventDefault();
     }
 
     render() {
         const { props, state } = this;
         const nestedComments = props.nestingLimit && props.replays.length
-            ? <CommentsList comments={props.replays} nestingLimit={props.nestingLimit}/>
+            ? <CommentsList
+                comments={props.replays}
+                nestingLimit={props.nestingLimit}
+                formOnComment={props.formOnComment}/>
             : null;
 
         const controls = [
-            <a href='#' className='comment-controls-item comment-controls-answer'>Answer</a>,
-            props.own ? <a href='#' className='comment-controls-item comment-controls-edit'>Edit</a> : null,
-            props.own ? <a href='#' className='comment-controls-item comment-controls-remove'>Remove</a> : null
+            <a href='#' className='comment-controls-item comment-controls-answer'
+                onClick={this._onAnswerClick.bind(this)}
+                key={0}>Answer</a>,
+            props.own
+                ? <a href='#' className='comment-controls-item comment-controls-edit'
+                    onClick={this._onEditClick.bind(this)}
+                    key={1}>Edit</a>
+                : null,
+            props.own
+                ? <a href='#' className='comment-controls-item comment-controls-remove'
+                    onClick={this._onRemoveClick.bind(this)}
+                    key={2}>Remove</a>
+                : null
         ];
+
+        console.log(props.id)
+        console.log(props.formOnComment)
+
+        const commentForm = props.formOnComment === props.id
+            ? <CommentForm />
+            : null;
 
         return (
             <li className='comment'>
@@ -54,6 +102,8 @@ class Comment extends Component {
                     {controls}
                 </div>
 
+                {commentForm}
+
                 {nestedComments}
             </li>
         );
@@ -61,6 +111,7 @@ class Comment extends Component {
 };
 
 Comment.propTypes = {
+    id: PropTypes.number,
     avatar: PropTypes.string,
     name: PropTypes.string,
     time: PropTypes.number,
@@ -70,6 +121,7 @@ Comment.propTypes = {
 };
 
 Comment.defaultProps = {
+    id: null,
     avatar: '',
     name: '',
     time: 0,

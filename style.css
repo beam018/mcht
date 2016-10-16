@@ -54,6 +54,10 @@ body {
     line-height: 16px;
 }
 
+.comment .comment-form {
+    margin-top: 10px;
+}
+
 .comment-controls-item {
     font-size: 10px;
     margin-right: 10px;
